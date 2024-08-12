@@ -11,20 +11,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Workspace {
+public class WorkSpaceRole {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @OneToMany
+    private List<Workspace> workspaceId;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
-    private String color;
-    @ManyToOne
-    private User users;
-    @Column(nullable = false)
-    private String initial_letter;
-    @Column(nullable = false)
-    private String avatar_id;
-
+    private String extendRole;
 
 }

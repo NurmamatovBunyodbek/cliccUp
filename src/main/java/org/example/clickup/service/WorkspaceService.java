@@ -18,34 +18,38 @@ public class WorkspaceService {
     public List<Workspace> getAllWorkspaces() {
         return workspaceRepository.findAll();
     }
+
     public Workspace getWorkspaceById(Integer id) {
         Optional<Workspace> workspace = workspaceRepository.findById(id);
         return workspace.get();
     }
+
     public Result addWorkspace(WorkspaceDto workspaceDto) {
         Workspace workspace = new Workspace();
         workspace.setName(workspaceDto.getName());
         workspace.setColor(workspaceDto.getColor());
         workspaceRepository.save(workspace);
-        return new Result(true,"Successfully added workspace");
+        return new Result(true, "Successfully added workspace");
     }
-    public Result updateWorkspace(Integer id,WorkspaceDto workspaceDto) {
+
+    public Result updateWorkspace(Integer id, WorkspaceDto workspaceDto) {
         Optional<Workspace> workspaceOptional = workspaceRepository.findById(id);
         if (workspaceOptional.isPresent()) {
             Workspace workspace = workspaceOptional.get();
             workspace.setName(workspaceDto.getName());
             workspace.setColor(workspaceDto.getColor());
             workspaceRepository.save(workspace);
-            return new Result(true,"Successfully updated workspace");
+            return new Result(true, "Successfully updated workspace");
         }
-        return new Result(false,"Workspace not found");
+        return new Result(false, "Workspace not found");
     }
+
     public Result deleteWorkspace(Integer id) {
         Optional<Workspace> workspaceOptional = workspaceRepository.findById(id);
         if (workspaceOptional.isPresent()) {
             workspaceRepository.delete(workspaceOptional.get());
-            return new Result(true,"Successfully deleted workspace");
+            return new Result(true, "Successfully deleted workspace");
         }
-        return new Result(false,"Workspace not found");
+        return new Result(false, "Workspace not found");
     }
 }

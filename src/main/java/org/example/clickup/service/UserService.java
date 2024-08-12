@@ -18,10 +18,12 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
     public User findUserById(Integer id) {
         Optional<User> userOptional = userRepository.findById(id);
         return userOptional.get();
     }
+
     public Result addUser(UserDto userDto) {
         User user = new User();
         user.setFullname(userDto.getFullname());
@@ -29,9 +31,10 @@ public class UserService {
         user.setPassword(userDto.getPassword());
         user.setColor(userDto.getColor());
         userRepository.save(user);
-        return new Result(true,"Created");
+        return new Result(true, "Created");
     }
-    public Result updateUser(Integer id,UserDto userDto) {
+
+    public Result updateUser(Integer id, UserDto userDto) {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
@@ -44,6 +47,7 @@ public class UserService {
         }
         return new Result(false, "user not found");
     }
+
     public Result deleteUser(Integer id) {
         Optional<User> userList = userRepository.findById(id);
         if (userList.isEmpty()) {

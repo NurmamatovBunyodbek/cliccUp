@@ -5,26 +5,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Workspace {
+public class Icon {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false)
-    private String name;
+    @OneToOne
+    private Attachment attachmentId;
     @Column(nullable = false)
     private String color;
-    @ManyToOne
-    private User users;
     @Column(nullable = false)
-    private String initial_letter;
+    private String initialLetter;
     @Column(nullable = false)
-    private String avatar_id;
-
+    private String icon;
 
 }

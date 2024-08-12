@@ -10,28 +10,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/workspace")
 public class WorkspaceController {
     @Autowired
     private WorkspaceService workspaceService;
+
     @GetMapping
     public List<Workspace> getAllWorkspaces() {
         return workspaceService.getAllWorkspaces();
     }
-    @GetMapping
+
+    @GetMapping("/{id}")
     public Workspace getWorkspaceById(@PathVariable Integer id) {
         return workspaceService.getWorkspaceById(id);
     }
+
     @PostMapping
     public Result addWorkspace(@RequestBody WorkspaceDto workspaceDto) {
         Result result = workspaceService.addWorkspace(workspaceDto);
         return result;
     }
-    @PutMapping
-    public Result updateWorkspace(@PathVariable Integer id,@RequestBody WorkspaceDto workspaceDto) {
+
+    @PutMapping("/{id}")
+    public Result updateWorkspace(@PathVariable Integer id, @RequestBody WorkspaceDto workspaceDto) {
         Result result = workspaceService.updateWorkspace(id, workspaceDto);
         return result;
     }
-    @DeleteMapping
+
+    @DeleteMapping("/{id}")
     public Result deleteWorkspace(@PathVariable Integer id) {
         Result result = workspaceService.deleteWorkspace(id);
         return result;
