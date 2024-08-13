@@ -7,9 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AttachmentDto {
-    private String name;
-    private String originalName;
-    private String size;
-    private String contentType;
+public class WorkSpaceUserDto {
+//Nimasini olib kelishni bilmadim va qanday olib kelishni ham:(
 }

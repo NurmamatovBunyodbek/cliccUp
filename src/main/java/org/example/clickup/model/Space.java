@@ -11,17 +11,24 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Attachment {
+public class Space {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
-    private String originalName;
+    private String color;
+    @ManyToMany
+    private List<Workspace> workspaceid;
     @Column(nullable = false)
-    private String size;
+    private String initial_letter;
+    @ManyToMany
+    private List<Icon> iconId;
     @Column(nullable = false)
-    private String content_type;
-
+    private String avatar_id;
+    @OneToOne
+    private User userid;
+    @Column(nullable = false)
+    private String acces_type;
 }

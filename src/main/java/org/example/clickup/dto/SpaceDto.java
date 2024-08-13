@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AttachmentDto {
+public class SpaceDto {
     private String name;
-    private String originalName;
-    private String size;
-    private String contentType;
+    private String color;
+    private String initial_letter;
+    private String avatar_id;
+    private String acces_type;
 }

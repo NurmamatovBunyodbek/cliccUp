@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AttachmentDto {
-    private String name;
-    private String originalName;
-    private String size;
-    private String contentType;
+public class IconDto {
+    private String color;
+    private String initialLetter;
+    private String icon;
 }
