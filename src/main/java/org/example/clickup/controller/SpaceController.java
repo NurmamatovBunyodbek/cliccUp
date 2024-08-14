@@ -13,23 +13,28 @@ import java.util.List;
 @RequestMapping("/space")
 public class SpaceController {
     @Autowired
-    private SpaceService spaceService;
+    SpaceService spaceService;
+
     @GetMapping
     public List<Space> getSpaces() {
         return spaceService.getAllSpaces();
     }
+
     @GetMapping("/{id}")
     public Space getSpaceById(@PathVariable Integer id) {
         return spaceService.getSpaceById(id);
     }
+
     @PostMapping
     public Result addSpace(@RequestBody SpaceDto spaceDto) {
         return spaceService.addSpace(spaceDto);
     }
+
     @PutMapping("/{id}")
-    public Result updateSpace(@PathVariable Integer id,@RequestBody SpaceDto spaceDto) {
+    public Result updateSpace(@PathVariable Integer id, @RequestBody SpaceDto spaceDto) {
         return spaceService.updateSpace(id, spaceDto);
     }
+
     @DeleteMapping("/{id}")
     public Result deleteSpace(@PathVariable Integer id) {
         return spaceService.deleteSpace(id);

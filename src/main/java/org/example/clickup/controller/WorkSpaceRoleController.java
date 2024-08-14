@@ -10,26 +10,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/workspaceRole")
 public class WorkSpaceRoleController {
+
+
     @Autowired
-    private WorkSpaceRoleService workSpaceRoleService;
+    WorkSpaceRoleService workSpaceRoleService;
+
     @GetMapping
     public List<Workspace> getAll() {
         return workSpaceRoleService.getallWorkSpaceRole();
     }
+
     @GetMapping("/{id}")
     public Workspace getWSRById(@PathVariable Integer id) {
-        return (Workspace) workSpaceRoleService.getallWorkSpaceRoleByWorkspaceID(id);
+        return  workSpaceRoleService.getallWorkSpaceRoleByWorkspaceID(id);
     }
+
     @PostMapping
     public Result addWSR(@RequestBody WorkSpaceRoleDto workSpaceRoleDto) {
         return workSpaceRoleService.addWorkspaceRole(workSpaceRoleDto);
     }
+
     @PutMapping("/{id}")
-    public Result updateWSR(@PathVariable Integer id,@RequestBody WorkSpaceRoleDto workSpaceRoleDto) {
+    public Result updateWSR(@PathVariable Integer id, @RequestBody WorkSpaceRoleDto workSpaceRoleDto) {
         return workSpaceRoleService.updateWorkspaceRole(id, workSpaceRoleDto);
     }
+
     @DeleteMapping("/{id}")
     public Result deleteWSR(@PathVariable Integer id) {
         return workSpaceRoleService.deleteWorkspaceRole(id);

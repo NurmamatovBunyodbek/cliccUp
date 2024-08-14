@@ -15,50 +15,49 @@ import java.util.Optional;
 @Service
 public class WorkSpaceRoleService {
     @Autowired
-    public WorkspaceRoleRepository workspaceRoleRepository;
+    WorkspaceRoleRepository workspaceRoleRepository;
 
     public List<Workspace> getallWorkSpaceRole() {
         List<Workspace> workspaceList = workspaceRoleRepository.findAll();
         return workspaceList;
     }
-    public List<Workspace> getallWorkSpaceRoleByWorkspaceID(Integer id) {
-        Optional<Workspace> workspaceOptional = workspaceRoleRepository.findById(id);
-        if (workspaceOptional.isPresent()) {
-            List<Workspace> workspaceList = workspaceRoleRepository.findAll();
-            return workspaceList;
-        }
-        return null;
+
+    public Workspace getallWorkSpaceRoleByWorkspaceID(Integer id) {
+        Optional<Workspace> optionalWorkspace = workspaceRoleRepository.findById(id);
+        return optionalWorkspace.get();
     }
+
     public Result addWorkspaceRole(WorkSpaceRoleDto workSpaceRoleDto) {
         WorkSpaceRole workSpaceRole = new WorkSpaceRole();
         workSpaceRole.setName(workSpaceRoleDto.getName());
         workSpaceRole.setExtendRole(workSpaceRoleDto.getExtendRole());
         WorkspaceRoleRepository.save(workSpaceRole);
-        return new Result(true,"Successfully added work space role");
+        return new Result(true, "Successfully added work space role");
 
     }
-    public Result updateWorkspaceRole(Integer id , WorkSpaceRoleDto workSpaceRoleDto) {
+
+    public Result updateWorkspaceRole(Integer id, WorkSpaceRoleDto workSpaceRoleDto) {
         Optional<Workspace> workspaceOptional = workspaceRoleRepository.findById(id);
         if (workspaceOptional.isPresent()) {
             WorkSpaceRole workSpaceRole = new WorkSpaceRole();
             workSpaceRole.setName(workSpaceRoleDto.getName());
             workSpaceRole.setExtendRole(workSpaceRoleDto.getExtendRole());
             WorkspaceRoleRepository.save(workSpaceRole);
-            return new Result(true,"Successfully updated workspace role");
+            return new Result(true, "Successfully updated workspace role");
         }
-        return new Result(false,"Failed to update workspace role");
+        return new Result(false, "Failed to update workspace role");
 
     }
+
     public Result deleteWorkspaceRole(Integer id) {
         Optional<Workspace> workspaceOptional = workspaceRoleRepository.findById(id);
         if (workspaceOptional.isPresent()) {
             WorkSpaceRole workSpaceRole = new WorkSpaceRole();
             workSpaceRole.setId(id);
         }
-        return new Result(true,"Successfully deleted work space role");
+        return new Result(true, "Successfully deleted work space role");
 
     }
-
 
 
 }

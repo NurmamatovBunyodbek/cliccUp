@@ -15,24 +15,28 @@ import java.util.List;
 public class AttachmentController {
     //CRUD
     @Autowired
-    private AttachmentService attachmentService;
+    AttachmentService attachmentService;
 
     @GetMapping
     public List<Attachment> getAll() {
         return attachmentService.getAttachments();
     }
+
     @GetMapping("/{id}")
     public Attachment attachmentbyId(@PathVariable Integer id) {
         return attachmentService.getAttachmentBYID(id);
     }
+
     @PostMapping
     public Result add(@RequestBody AttachmentDto attachmentDto) {
         return attachmentService.addAttachment(attachmentDto);
     }
+
     @PutMapping("/{id}")
     public Result update(@PathVariable Integer id, @RequestBody AttachmentDto attachmentDto) {
         return attachmentService.updateAttachment(id, attachmentDto);
     }
+
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable Integer id) {
         return attachmentService.deleteAttachment(id);
