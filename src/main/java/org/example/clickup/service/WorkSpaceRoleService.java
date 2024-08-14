@@ -17,13 +17,13 @@ public class WorkSpaceRoleService {
     @Autowired
     WorkspaceRoleRepository workspaceRoleRepository;
 
-    public List<Workspace> getallWorkSpaceRole() {
-        List<Workspace> workspaceList = workspaceRoleRepository.findAll();
+    public List<WorkSpaceRole> getallWorkSpaceRole() {
+        List<WorkSpaceRole> workspaceList = workspaceRoleRepository.findAll();
         return workspaceList;
     }
 
-    public Workspace getallWorkSpaceRoleByWorkspaceID(Integer id) {
-        Optional<Workspace> optionalWorkspace = workspaceRoleRepository.findById(id);
+    public WorkSpaceRole getallWorkSpaceRoleByWorkspaceID(Integer id) {
+        Optional<WorkSpaceRole> optionalWorkspace = workspaceRoleRepository.findById(id);
         return optionalWorkspace.get();
     }
 
@@ -31,18 +31,18 @@ public class WorkSpaceRoleService {
         WorkSpaceRole workSpaceRole = new WorkSpaceRole();
         workSpaceRole.setName(workSpaceRoleDto.getName());
         workSpaceRole.setExtendRole(workSpaceRoleDto.getExtendRole());
-        WorkspaceRoleRepository.save(workSpaceRole);
+        workspaceRoleRepository.save(workSpaceRole);
         return new Result(true, "Successfully added work space role");
 
     }
 
     public Result updateWorkspaceRole(Integer id, WorkSpaceRoleDto workSpaceRoleDto) {
-        Optional<Workspace> workspaceOptional = workspaceRoleRepository.findById(id);
+        Optional<WorkSpaceRole> workspaceOptional = workspaceRoleRepository.findById(id);
         if (workspaceOptional.isPresent()) {
             WorkSpaceRole workSpaceRole = new WorkSpaceRole();
             workSpaceRole.setName(workSpaceRoleDto.getName());
             workSpaceRole.setExtendRole(workSpaceRoleDto.getExtendRole());
-            WorkspaceRoleRepository.save(workSpaceRole);
+            workspaceRoleRepository.save(workSpaceRole);
             return new Result(true, "Successfully updated workspace role");
         }
         return new Result(false, "Failed to update workspace role");
@@ -50,7 +50,7 @@ public class WorkSpaceRoleService {
     }
 
     public Result deleteWorkspaceRole(Integer id) {
-        Optional<Workspace> workspaceOptional = workspaceRoleRepository.findById(id);
+        Optional<WorkSpaceRole> workspaceOptional = workspaceRoleRepository.findById(id);
         if (workspaceOptional.isPresent()) {
             WorkSpaceRole workSpaceRole = new WorkSpaceRole();
             workSpaceRole.setId(id);

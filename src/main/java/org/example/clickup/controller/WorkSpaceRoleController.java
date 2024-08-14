@@ -2,6 +2,7 @@ package org.example.clickup.controller;
 
 import org.example.clickup.dto.WorkSpaceRoleDto;
 import org.example.clickup.model.Result;
+import org.example.clickup.model.WorkSpaceRole;
 import org.example.clickup.model.Workspace;
 import org.example.clickup.service.WorkSpaceRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,12 @@ public class WorkSpaceRoleController {
     WorkSpaceRoleService workSpaceRoleService;
 
     @GetMapping
-    public List<Workspace> getAll() {
+    public List<WorkSpaceRole> getAll() {
         return workSpaceRoleService.getallWorkSpaceRole();
     }
 
     @GetMapping("/{id}")
-    public Workspace getWSRById(@PathVariable Integer id) {
+    public WorkSpaceRole getWSRById(@PathVariable Integer id) {
         return  workSpaceRoleService.getallWorkSpaceRoleByWorkspaceID(id);
     }
 
