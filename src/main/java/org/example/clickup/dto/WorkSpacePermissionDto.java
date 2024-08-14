@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ViewDto {
-    private String name;
-    private Integer iconid;
+public class WorkSpacePermissionDto {
+    private Integer workSpaceRoleId;
+    private String permission;
 }
