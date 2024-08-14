@@ -21,7 +21,7 @@ public class AttachmentController {
     public List<Attachment> getAll() {
         return attachmentService.getAttachments();
     }
-    @GetMapping
+    @GetMapping("/{id}")
     public Attachment attachmentbyId(@PathVariable Integer id) {
         return attachmentService.getAttachmentBYID(id);
     }
@@ -29,11 +29,11 @@ public class AttachmentController {
     public Result add(@RequestBody AttachmentDto attachmentDto) {
         return attachmentService.addAttachment(attachmentDto);
     }
-    @PutMapping
+    @PutMapping("/{id}")
     public Result update(@PathVariable Integer id, @RequestBody AttachmentDto attachmentDto) {
         return attachmentService.updateAttachment(id, attachmentDto);
     }
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public Result delete(@PathVariable Integer id) {
         return attachmentService.deleteAttachment(id);
     }

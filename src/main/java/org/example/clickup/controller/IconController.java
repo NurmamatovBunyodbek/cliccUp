@@ -19,7 +19,7 @@ public class IconController {
     public List<Icon> geticons() {
         return iconService.getAllIcons();
     }
-    @GetMapping
+    @GetMapping("/{id}")
     public Icon geticonById(@PathVariable Integer id) {
         return iconService.getIconById(id);
     }
@@ -27,11 +27,11 @@ public class IconController {
     public Result addicon(@RequestBody IconDto iconDto) {
         return iconService.addIcon(iconDto);
     }
-    @PutMapping
+    @PutMapping("/{id}")
     public Result updateicon(@PathVariable Integer id,@RequestBody IconDto iconDto) {
         return iconService.updateIcon(id, iconDto);
     }
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public Result deleteicon(@PathVariable Integer id) {
         return iconService.deleteIcon(id);
     }

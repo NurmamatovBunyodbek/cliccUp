@@ -18,7 +18,7 @@ public class WorkSpaceRoleController {
     public List<Workspace> getAll() {
         return workSpaceRoleService.getallWorkSpaceRole();
     }
-    @GetMapping
+    @GetMapping("/{id}")
     public Workspace getWSRById(@PathVariable Integer id) {
         return (Workspace) workSpaceRoleService.getallWorkSpaceRoleByWorkspaceID(id);
     }
@@ -26,11 +26,11 @@ public class WorkSpaceRoleController {
     public Result addWSR(@RequestBody WorkSpaceRoleDto workSpaceRoleDto) {
         return workSpaceRoleService.addWorkspaceRole(workSpaceRoleDto);
     }
-    @PutMapping
+    @PutMapping("/{id}")
     public Result updateWSR(@PathVariable Integer id,@RequestBody WorkSpaceRoleDto workSpaceRoleDto) {
         return workSpaceRoleService.updateWorkspaceRole(id, workSpaceRoleDto);
     }
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public Result deleteWSR(@PathVariable Integer id) {
         return workSpaceRoleService.deleteWorkspaceRole(id);
     }

@@ -18,7 +18,7 @@ public class SpaceController {
     public List<Space> getSpaces() {
         return spaceService.getAllSpaces();
     }
-    @GetMapping
+    @GetMapping("/{id}")
     public Space getSpaceById(@PathVariable Integer id) {
         return spaceService.getSpaceById(id);
     }
@@ -26,11 +26,11 @@ public class SpaceController {
     public Result addSpace(@RequestBody SpaceDto spaceDto) {
         return spaceService.addSpace(spaceDto);
     }
-    @PutMapping
+    @PutMapping("/{id}")
     public Result updateSpace(@PathVariable Integer id,@RequestBody SpaceDto spaceDto) {
         return spaceService.updateSpace(id, spaceDto);
     }
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public Result deleteSpace(@PathVariable Integer id) {
         return spaceService.deleteSpace(id);
     }
