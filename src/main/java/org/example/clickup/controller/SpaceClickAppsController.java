@@ -21,7 +21,7 @@ public class SpaceClickAppsController {
         return spaceClickAppsService.getSpaceClickApps();
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public SpaceClickApps getSpaceClickAppsBySpaceId(@PathVariable Integer id) {
         return spaceClickAppsService.getAllClickAppsBySpaceId(id);
     }

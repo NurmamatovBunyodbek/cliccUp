@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.clickup.model.entity.Type;
 
 @Data
 @AllArgsConstructor
@@ -27,9 +28,5 @@ public class Status {
     @Enumerated(EnumType.STRING)
     private Type type;
 
-    public enum Type {
-        OPEN,
-        CUSTOM,
-        CLOSED
-    }
+
 }
