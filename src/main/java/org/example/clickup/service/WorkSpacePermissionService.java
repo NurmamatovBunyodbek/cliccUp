@@ -26,19 +26,17 @@ public class WorkSpacePermissionService {
         Optional<WorkSpacePermission> permissionOptional = workSpacePermissionRepository.findById(workSpacePermissionDto.getWorkSpaceRoleId());
         if (permissionOptional.isPresent()) {
             workSpacePermission.setId(workSpacePermissionDto.getWorkSpaceRoleId());
+            workSpacePermissionDto.setPermission(workSpacePermissionDto.getPermission());
+            workSpacePermissionRepository.save(workSpacePermission);
+            return new Result(true,"Permission created");
         }
-        workSpacePermissionDto.setPermission(workSpacePermissionDto.getPermission());
-        workSpacePermissionRepository.save(workSpacePermission);
-        return new Result(true,"Permission created");
+        return new Result(false,"WorkSpaceRole not found");
+
     }
     public Result updateWorkSpacePermission(Integer id,WorkSpacePermissionDto workSpacePermissionDto) {
         Optional<WorkSpacePermission> permissionOptional = workSpacePermissionRepository.findById(id);
         if (permissionOptional.isPresent()) {
             WorkSpacePermission permission = permissionOptional.get();
-            Optional<WorkSpacePermission> permissionOptional1 = workSpacePermissionRepository.findById(workSpacePermissionDto.getWorkSpaceRoleId());
-            if (permissionOptional1.isPresent()) {
-                permission.setId(permissionOptional1.get().getId());
-            }
             permission.setPermission(workSpacePermissionDto.getPermission());
             workSpacePermissionRepository.save(permission);
             return new Result(true,"Permission updated");

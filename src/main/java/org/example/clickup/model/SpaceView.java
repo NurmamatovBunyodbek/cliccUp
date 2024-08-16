@@ -5,18 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class SpaceUser {
+public class SpaceView {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @ManyToOne
-    private Space spaceid;
-    @Column(nullable = false)
-    private Integer memberid;
+    private Space spaceId;
+
+    @ManyToOne
+    private View viewId;
 }

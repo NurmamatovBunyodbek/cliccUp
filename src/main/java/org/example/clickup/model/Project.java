@@ -5,18 +5,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class SpaceUser {
+public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
-    private Space spaceid;
     @Column(nullable = false)
-    private Integer memberid;
+    private String name;
+    @ManyToOne
+    private Space spaceID;
+    @Column(nullable = false)
+    private String accessType;
+    @Column(nullable = false)
+    private Boolean archived;
+    @Column(nullable = false)
+    private String color;
 }
+
