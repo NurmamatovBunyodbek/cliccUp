@@ -15,7 +15,7 @@ import java.util.Optional;
 @RequestMapping("/categories")
 public class CategoryController {
     @Autowired
-    private CategoryService categoryService;
+    CategoryService categoryService;
 
     @GetMapping
     public List<Category> getAllCategories() {
@@ -25,8 +25,9 @@ public class CategoryController {
     @GetMapping("/{id}")
     public Category findCategoryById(@PathVariable Integer id) {
         Optional<Category> categoryById = categoryService.getCategoryById(id);
-        return categoryById.orElse(null);
+        return categoryById.get();
     }
+
     @PostMapping
     public Result createCategory(@RequestBody CategoryDto categoryDto) {
         return categoryService.createCategory(categoryDto);

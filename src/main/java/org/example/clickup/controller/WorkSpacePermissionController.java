@@ -12,29 +12,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("{/workspacepermission}")
+@RequestMapping("/workspacepermission")
 public class WorkSpacePermissionController {
     @Autowired
     WorkSpacePermissionService workSpacePermissionService;
+
     @GetMapping
     public List<WorkSpacePermission> getWorkSpaceallPermissionService(@RequestBody WorkSpacePermissionDto workSpacePermissionDto) {
-       return workSpacePermissionService.getallWorkSpacePermission();
+        return workSpacePermissionService.getallWorkSpacePermission();
     }
-    @GetMapping("{/id}")
-    public List<WorkSpacePermission> getWorkSpaceallPermissionServiceByid(@PathVariable Integer id) {
+
+    @GetMapping("/{id}")
+    public WorkSpacePermission getWorkSpaceallPermissionServiceByid(@PathVariable Integer id) {
         WorkSpacePermission workSpacePermissionById = workSpacePermissionService.getWorkSpacePermissionById(id);
-        return (List<WorkSpacePermission>) workSpacePermissionById;
+        return workSpacePermissionById;
 
     }
+
     @PostMapping
     public Result addWorkSpacePermissionService(@RequestBody WorkSpacePermissionDto workSpacePermissionDto) {
-      return workSpacePermissionService.createWorkSpacePermission(workSpacePermissionDto);
+        return workSpacePermissionService.createWorkSpacePermission(workSpacePermissionDto);
     }
-    @PutMapping("{/id}")
-    public Result updateWorkSpacePermissionService(@PathVariable Integer id,@RequestBody WorkSpacePermissionDto workSpacePermissionDto) {
+
+    @PutMapping("/{id}")
+    public Result updateWorkSpacePermissionService(@PathVariable Integer id, @RequestBody WorkSpacePermissionDto workSpacePermissionDto) {
         return workSpacePermissionService.updateWorkSpacePermission(id, workSpacePermissionDto);
     }
-    @DeleteMapping("{/id}")
+
+    @DeleteMapping("/{id}")
     public Result deleteWorkSpacePermissionService(@PathVariable Integer id) {
         return workSpacePermissionService.deleteWorkSpacePermission(id);
     }

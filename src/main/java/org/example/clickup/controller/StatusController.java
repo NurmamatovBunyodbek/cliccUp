@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/status")
 public class StatusController {
     @Autowired
     private StatusService statusService;
@@ -23,6 +24,7 @@ public class StatusController {
     public Status findStatusById(@PathVariable Integer id) {
         return statusService.getStatusbyID(id);
     }
+
     @PostMapping
     public Result createStatus(@RequestBody StatusDto statusDto) {
         return statusService.createStatus(statusDto);

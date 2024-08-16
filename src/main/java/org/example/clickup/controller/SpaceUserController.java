@@ -11,30 +11,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/{spaceuser}")
+@RequestMapping("/spaceuser")
+
 public class SpaceUserController {
     @Autowired
     SpaceUserService spaceUserService;
+
     @GetMapping
     public ResponseEntity<List<SpaceUser>> getSpaceUsers() {
         List<SpaceUser> spaceUsers = spaceUserService.getallSpaceUsers();
         return ResponseEntity.ok(spaceUsers);
     }
+
     @GetMapping("/{id}")
-    public List<SpaceUser> getSpaceUserbyId(@PathVariable Integer id) {
+    public SpaceUser getSpaceUserbyId(@PathVariable Integer id) {
         SpaceUser spaceUser = spaceUserService.getSpaceUserById(id);
-        return (List<SpaceUser>) spaceUser;
+        return  spaceUser;
     }
+
     @PostMapping
     public Result createSpaceUser(@RequestBody SpaceUserDto spaceUserDto) {
         Result spaceUser = spaceUserService.createSpaceUser(spaceUserDto);
         return spaceUser;
     }
+
     @PutMapping("/{id}")
-    public Result updateSpaceUser(@PathVariable Integer id,@RequestBody SpaceUserDto spaceUserDto) {
+    public Result updateSpaceUser(@PathVariable Integer id, @RequestBody SpaceUserDto spaceUserDto) {
         Result spaceUser = spaceUserService.updateSpaceUser(id, spaceUserDto);
         return spaceUser;
     }
+
     @DeleteMapping("/{id}")
     public Result deleteSpaceUser(@PathVariable Integer id) {
         Result spaceUser = spaceUserService.deleteSpaceUser(id);

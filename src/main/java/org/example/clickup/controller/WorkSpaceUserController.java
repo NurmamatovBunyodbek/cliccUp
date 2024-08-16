@@ -18,26 +18,26 @@ public class WorkSpaceUserController {
     @Autowired
     WorkSpaceUserService workSpaceUserService;
     @GetMapping
-    private List<WorkSpaceUser> getWorkSpaceUser() {
+    public List<WorkSpaceUser> getWorkSpaceUser() {
         List<WorkSpaceUser> userList = workSpaceUserService.getALl();
         return userList.isEmpty() ? null : userList;
     }
     @GetMapping("/{id}")
-    private WorkSpaceUserService getWorkSpaceUsersByID(@PathVariable Integer id) {
+    public WorkSpaceUser getWorkSpaceUsersByID(@PathVariable Integer id) {
         return workSpaceUserService.getById(id);
     }
     @PostMapping
-    private Result createWorkSpaceUser(@RequestBody WorkSpaceUserDto workSpaceUserDto) {
+    public Result createWorkSpaceUser(@RequestBody WorkSpaceUserDto workSpaceUserDto) {
         Result result = workSpaceUserService.create(workSpaceUserDto);
         return result;
     }
     @PutMapping("/{id}")
-    private Result updateWorkSpaceUser(@PathVariable Integer id,@RequestBody WorkSpaceUserDto workSpaceUserDto) {
+    public Result updateWorkSpaceUser(@PathVariable Integer id,@RequestBody WorkSpaceUserDto workSpaceUserDto) {
         Result result = workSpaceUserService.update(id, workSpaceUserDto);
         return result;
     }
     @DeleteMapping("/{id}")
-    private Result deleteWorkSpaceUser(@PathVariable Integer id) {
+    public Result deleteWorkSpaceUser(@PathVariable Integer id) {
         Result result = workSpaceUserService.delete(id);
         return result;
     }

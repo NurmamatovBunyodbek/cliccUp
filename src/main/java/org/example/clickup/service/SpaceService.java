@@ -15,7 +15,7 @@ import java.util.Optional;
 @Service
 public class SpaceService {
     @Autowired
-     SpaceRepository spaceRepository;
+    SpaceRepository spaceRepository;
 
     @Autowired
     WorkspaceRepository workspaceRepository;

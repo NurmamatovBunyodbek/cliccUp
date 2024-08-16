@@ -20,14 +20,17 @@ public class ProjectController {
     public List<Project> getAllProjects() {
         return projectService.getAllProjects();
     }
+
     @GetMapping("/{id}")
     public Project getProjectById(@PathVariable Integer id) {
         return projectService.getProjectById(id);
     }
+
     @PostMapping
     public Result createProject(@RequestBody ProjectDto projectDto) {
         return projectService.createProject(projectDto);
     }
+
     @PutMapping("/{id}")
     public Result updateProject(@PathVariable Integer id, @RequestBody ProjectDto projectDto) {
         return projectService.updateProject(id, projectDto);

@@ -23,9 +23,11 @@ public class CategoryService {
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }
+
     public Optional<Category> getCategoryById(Integer id) {
         return categoryRepository.findById(id);
     }
+
     public Result createCategory(CategoryDto categoryDto) {
         Optional<Project> project = projectRepository.findById(categoryDto.getProjectId());
         if (project.isPresent()) {
@@ -40,6 +42,7 @@ public class CategoryService {
         }
         return new Result(false, "Project not found");
     }
+
     public Result updateCategory(Integer id, CategoryDto categoryDto) {
         Optional<Category> existingCategory = categoryRepository.findById(id);
         if (existingCategory.isPresent()) {
@@ -58,6 +61,7 @@ public class CategoryService {
         }
         return new Result(false, "Category not found");
     }
+
     public Result deleteCategory(Integer id) {
         Optional<Category> existingCategory = categoryRepository.findById(id);
         if (existingCategory.isPresent()) {
@@ -66,8 +70,6 @@ public class CategoryService {
         }
         return new Result(false, "Category not found");
     }
-
-
 
 
 }

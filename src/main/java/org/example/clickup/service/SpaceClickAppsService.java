@@ -29,8 +29,9 @@ public class SpaceClickAppsService {
         return spaceClickAppsRepository.findAll();
     }
 
-    public ClickApps getAllClickAppsBySpaceId(Integer id) {
-        return clickAppsRepository.findById(id).get();
+    public SpaceClickApps getAllClickAppsBySpaceId(Integer id) {
+        Optional<SpaceClickApps> appsOptional = spaceClickAppsRepository.findById(id);
+        return appsOptional.get();
     }
 
     public SpaceClickApps createSpaceClickApps(SpaceClickAppsDto spaceClickAppsDto) {
@@ -45,6 +46,7 @@ public class SpaceClickAppsService {
         }
         return null;
     }
+
     public Result updateSpaceClickApps(Integer id, SpaceClickAppsDto spaceClickAppsDto) {
         Optional<SpaceClickApps> existingSpaceClickApps = spaceClickAppsRepository.findById(id);
         if (existingSpaceClickApps.isPresent()) {
@@ -52,22 +54,16 @@ public class SpaceClickAppsService {
             Optional<Space> space = spaceRepository.findById(spaceClickAppsDto.getSpaceid());
             Optional<ClickApps> clickApps = clickAppsRepository.findById(spaceClickAppsDto.getClickAppsid());
 
-            if (space.isPresent() && clickApps.isPresent()) {
-                spaceClickApps.setSpaceid(space.get());
-                spaceClickApps.setClickAppsid(clickApps.get());
-                spaceClickAppsRepository.save(spaceClickApps);
-                return new Result(true, "Successfully updated spaceclickapps");
-            }
-            return new Result(false, "SpaceClickApp not found");
+            spaceClickApps.setSpaceid(space.get());
+            spaceClickApps.setClickAppsid(clickApps.get());
+            spaceClickAppsRepository.save(spaceClickApps);
+            return new Result(true, "Successfully updated spaceclickapps");
         }
         return new Result(false, "Space not found");
     }
+
     public Result deleteSpaceClickApps(Integer id) {
-        Optional<SpaceClickApps> existingSpaceClickApps = spaceClickAppsRepository.findById(id);
-        if (existingSpaceClickApps.isPresent()) {
-            spaceClickAppsRepository.delete(existingSpaceClickApps.get());
-            return new Result(true, "Successfully deleted spaceclickapps");
-        }
-        return new Result(false, "Space not found");
+        spaceClickAppsRepository.deleteById(id);
+        return new Result(true, "deleted");
     }
 }

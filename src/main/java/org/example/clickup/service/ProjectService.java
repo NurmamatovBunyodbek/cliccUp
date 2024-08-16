@@ -23,30 +23,35 @@ public class ProjectService {
     public List<Project> getAllProjects() {
         return projectRepository.findAll();
     }
+
     public Project getProjectById(Integer id) {
         Optional<Project> byId = projectRepository.findById(id);
-        return byId.orElse(null);
+        return byId.get();
     }
+
     public Result createProject(ProjectDto projectDto) {
-        Optional<Space> space = spaceRepository.findById(projectDto.getSpaceId());
-        if (space.isPresent()) {
-            Project project = new Project();
-            project.setName(projectDto.getName());
-            project.setSpaceID(space.get());
-            project.setAccessType(projectDto.getAccessType());
-            project.setArchived(projectDto.getArchived());
-            project.setColor(projectDto.getColor());
-            projectRepository.save(project);
-            return new Result(true, "Project created successfully");
+        boolean existsedByName = projectRepository.existsByName(projectDto.getName());
+        if (existsedByName) {
+            return new Result(false, "Bunday nomli project mavjud");
         }
-        return new Result(false, "Space not found");
+        Optional<Space> space = spaceRepository.findById(projectDto.getSpaceId());
+        Project project = new Project();
+        project.setName(projectDto.getName());
+        project.setSpaceID(space.get());
+        project.setAccessType(projectDto.getAccessType());
+        project.setArchived(projectDto.getArchived());
+        project.setColor(projectDto.getColor());
+        projectRepository.save(project);
+        return new Result(true, "Project created successfully");
+
     }
+
     public Result updateProject(Integer id, ProjectDto projectDto) {
         Optional<Project> updatedProject = projectRepository.findById(id);
         if (updatedProject.isPresent()) {
             Project project = updatedProject.get();
             Optional<Space> space = spaceRepository.findById(projectDto.getSpaceId());
-            if (space.isPresent()) {
+
                 project.setName(projectDto.getName());
                 project.setSpaceID(space.get());
                 project.setAccessType(projectDto.getAccessType());
@@ -55,13 +60,12 @@ public class ProjectService {
                 projectRepository.save(project);
                 return new Result(true, "Project updated successfully");
             }
-            return new Result(false, "Space not found");
-        }
         return new Result(false, "Project not found");
     }
+
     public Result deleteProject(Integer id) {
         projectRepository.deleteById(id);
-           return new Result(true, "Project deleted successfully");
+        return new Result(true, "Project deleted successfully");
     }
 
 }

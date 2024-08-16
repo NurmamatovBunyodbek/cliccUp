@@ -31,6 +31,7 @@ public class WorkSpaceUserService {
     public List<WorkSpaceUser> getALl() {
         return workSpaceUserRepository.findAll();
     }
+
     public WorkSpaceUser getById(Integer id) {
         return workSpaceUserRepository.findById(id).get();
     }
@@ -59,9 +60,10 @@ public class WorkSpaceUserService {
 
         return new Result(true, "Saqlandi");
     }
-    public Result update(Integer id,WorkSpaceUserDto workSpaceUserDto){
+
+    public Result update(Integer id, WorkSpaceUserDto workSpaceUserDto) {
         WorkSpaceUser workSpaceUser = workSpaceUserRepository.findById(id).get();
-        if(workSpaceUser.getUserid().equals(workSpaceUserDto.getUserid())){
+        if (workSpaceUser.getUserid().equals(workSpaceUserDto.getUserid())) {
             workSpaceUser = new WorkSpaceUser();
             Optional<Workspace> workspaceOptional = workspaceRepository.findById(workSpaceUserDto.getWorkspaceid());
             Workspace workspace = workspaceOptional.get();
@@ -73,15 +75,16 @@ public class WorkSpaceUserService {
             WorkSpaceRole workSpaceRole = optional.get();
             workSpaceUser.setWorkspaceroleId(workSpaceRole);
             workSpaceUserRepository.save(workSpaceUser);
-            return new Result(true,"O'zgartirildi");
+            return new Result(true, "O'zgartirildi");
         }
-        return new Result(false,"O'zgartirilmadi");
+        return new Result(false, "O'zgartirilmadi");
     }
+
     public Result delete(Integer id) {
         Optional<WorkSpaceUser> optionalWorkSpaceUser = workSpaceUserRepository.findById(id);
         WorkSpaceUser workSpaceUser = optionalWorkSpaceUser.get();
         workSpaceUserRepository.delete(workSpaceUser);
-        return new Result(true,"O'chirildi");
+        return new Result(true, "O'chirildi");
     }
 
 
