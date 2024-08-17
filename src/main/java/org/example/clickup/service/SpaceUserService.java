@@ -44,16 +44,11 @@ public class SpaceUserService {
         Optional<SpaceUser> byId = spaceUserRepository.findById(id);
         if (byId.isPresent()) {
             SpaceUser spaceUser = byId.get();
-            Optional<SpaceUser> byId1 = spaceUserRepository.findById(spaceUser.getId());
-            if (byId1.isPresent()) {
-                spaceUserDto.setSpaceid(spaceUserDto.getSpaceid());
-                spaceUser.setMemberid(spaceUserDto.getMemberid());
-                spaceUserRepository.save(spaceUser);
-                return new Result(true, "Space user updated successfully");
+            spaceUserDto.setSpaceid(spaceUserDto.getSpaceid());
+            spaceUser.setMemberid(spaceUserDto.getMemberid());
+            spaceUserRepository.save(spaceUser);
+            return new Result(true, "Space user updated successfully");
             }
-            return new Result(false, "Space not found");
-
-        }
         return new Result(false, "SpaceUser not found");
 
     }

@@ -35,15 +35,12 @@ public class SpaceViewService {
     public Result createSpaceView(SpaceViewDto spaceViewDto) {
         Optional<Space> space = spaceRepository.findById(spaceViewDto.getSpaceId());
         Optional<View> view = viewRepository.findById(spaceViewDto.getViewId());
+        SpaceView spaceView = new SpaceView();
+        spaceView.setSpaceId(space.get());
+        spaceView.setViewId(view.get());
+        spaceViewRepository.save(spaceView);
+        return new Result(true, "SpaceView created successfully");
 
-        if (space.isPresent() && view.isPresent()) {
-            SpaceView spaceView = new SpaceView();
-            spaceView.setSpaceId(space.get());
-            spaceView.setViewId(view.get());
-            spaceViewRepository.save(spaceView);
-            return new Result(true, "SpaceView created successfully");
-        }
-        return new Result(false, "Space or View not found");
     }
     public Result updateSpaceView(Integer id, SpaceViewDto spaceViewDto) {
         Optional<SpaceView> existingSpaceView = spaceViewRepository.findById(id);
@@ -51,23 +48,17 @@ public class SpaceViewService {
             SpaceView spaceView = existingSpaceView.get();
             Optional<Space> space = spaceRepository.findById(spaceViewDto.getSpaceId());
             Optional<View> view = viewRepository.findById(spaceViewDto.getViewId());
-
-            if (space.isPresent() && view.isPresent()) {
-                spaceView.setSpaceId(space.get());
-                spaceView.setViewId(view.get());
-                spaceViewRepository.save(spaceView);
-                return new Result(true, "SpaceView updated successfully");
+            spaceView.setSpaceId(space.get());
+            spaceView.setViewId(view.get());
+            spaceViewRepository.save(spaceView);
+            return new Result(true, "SpaceView updated successfully");
             }
-            return new Result(false, "Space or View not found");
-        }
+
         return new Result(false, "SpaceView not found");
     }
     public Result deleteSpaceView(Integer id) {
-        if (spaceViewRepository.existsById(id)) {
-            spaceViewRepository.deleteById(id);
-            return new Result(true, "SpaceView deleted successfully");
-        }
-        return new Result(false, "SpaceView not found");
+        spaceViewRepository.deleteById(id);
+        return new Result(true, "SpaceView deleted successfully");
     }
 
 }
