@@ -22,6 +22,7 @@ public class ViewService {
     public View getViewById(Integer id) {
         return viewRepository.getById(id);
     }
+
     public Result addView(ViewDto viewDto) {
         View view = new View();
         view.setName(viewDto.getName());

@@ -5,18 +5,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.security.Timestamp;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class ClickApps {
+public class TimeTracked {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @ManyToOne
+    private Task taskid;
     @Column(nullable = false)
-    private String name;
-    @OneToMany
-    private List<Icon> iconid;
+    private Timestamp startedAt;
+    @Column(nullable = false)
+    private Timestamp stoppedAt;
 }

@@ -5,18 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class ClickApps {
+public class CheckListItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false)
     private String name;
-    @OneToMany
-    private List<Icon> iconid;
+    @ManyToOne
+    private Checklist checkListid;
+    @Column(nullable = false)
+    private boolean resolved;
+    @Column(nullable = false)
+    private Integer assignedUserId;
 }

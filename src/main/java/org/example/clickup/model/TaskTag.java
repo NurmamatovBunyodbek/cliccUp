@@ -5,18 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class ClickApps {
+public class TaskTag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false)
-    private String name;
-    @OneToMany
-    private List<Icon> iconid;
+    @ManyToOne
+    private Task taskid;
+    @ManyToOne
+    private Tag tagid;
 }

@@ -4,19 +4,23 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
+import org.example.clickup.model.entity.DependencyType;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class ClickApps {
+public class TaskDependency {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false)
-    private String name;
-    @OneToMany
-    private List<Icon> iconid;
+
+    @ManyToOne
+    private Task taskid;
+
+    private Integer dependencyTaskId;
+
+
+    private DependencyType dependencyType;
+
 }

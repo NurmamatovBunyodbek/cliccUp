@@ -5,18 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class ClickApps {
+public class CategoryUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = false)
     private String name;
-    @OneToMany
-    private List<Icon> iconid;
+    @ManyToOne
+    private Category categoryid;
+    @ManyToOne
+    private User userid;
 }
