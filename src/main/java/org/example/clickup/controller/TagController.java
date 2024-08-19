@@ -14,7 +14,7 @@ import java.util.List;
 public class TagController {
 
     @Autowired
-    private TagService tagService;
+    TagService tagService;
 
     @GetMapping
     public List<Tag> getAllTags() {

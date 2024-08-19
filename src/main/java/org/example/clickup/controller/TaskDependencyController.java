@@ -24,6 +24,7 @@ public class TaskDependencyController {
     public TaskDependency findTaskDependencyById(@PathVariable Integer id) {
         return taskDependencyService.findById(id);
     }
+
     @PostMapping
     public Result createTaskDependency(@RequestBody TaskDependencyDto taskDependencyDto) {
         return taskDependencyService.createTaskDependency(taskDependencyDto);

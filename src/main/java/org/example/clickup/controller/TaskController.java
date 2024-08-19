@@ -20,19 +20,23 @@ public class TaskController {
     public List<Task> getTasks() {
         return taskService.getAllTasks();
     }
-    @GetMapping
+
+    @GetMapping("/{id}")
     public Task getTaskById(Integer id) {
         return taskService.getTaskById(id);
     }
+
     @PostMapping
     public Result addTask(@RequestBody TaskDto taskDto) {
         return taskService.createTask(taskDto);
     }
-    @PutMapping
-    public Result updateTask(@PathVariable Integer id,@RequestBody TaskDto taskDto) {
+
+    @PutMapping("/{id}")
+    public Result updateTask(@PathVariable Integer id, @RequestBody TaskDto taskDto) {
         return taskService.updateTask(id, taskDto);
     }
-    @DeleteMapping
+
+    @DeleteMapping("/{id}")
     public Result deleteTask(@PathVariable Integer id) {
         return taskService.deleteTask(id);
     }

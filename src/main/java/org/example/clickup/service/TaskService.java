@@ -15,16 +15,16 @@ import java.util.Optional;
 @Service
 public class TaskService {
     @Autowired
-    private TaskRepository taskRepository;
+     TaskRepository taskRepository;
 
     @Autowired
-    private StatusRepository statusRepository;
+     StatusRepository statusRepository;
 
     @Autowired
-    private CategoryRepository categoryRepository;
+     CategoryRepository categoryRepository;
 
     @Autowired
-    private PriorityRepository priorityRepository;
+     PriorityRepository priorityRepository;
 
     public List<Task> getAllTasks() {
         return taskRepository.findAll();

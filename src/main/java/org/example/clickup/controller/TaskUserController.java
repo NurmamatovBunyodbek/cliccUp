@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/taskuser")
 public class TaskUserController {
     @Autowired
-    private TaskUserService taskUserService;
+     TaskUserService taskUserService;
 
     @GetMapping
     public List<TaskUser> getAllTaskUsers() {

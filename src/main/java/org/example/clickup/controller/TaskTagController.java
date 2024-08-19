@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/tasktag")
 public class TaskTagController {
     @Autowired
-    private TaskTagService taskTagService;
+     TaskTagService taskTagService;
 
     @GetMapping
     public List<TaskTag> getAllTaskTags() {
@@ -24,6 +24,7 @@ public class TaskTagController {
     public TaskTag findTaskTagById(@PathVariable Integer id) {
         return taskTagService.findById(id);
     }
+
     @PostMapping
     public Result createTaskTag(@RequestBody TaskTagDto taskTagDto) {
         return taskTagService.createTaskTag(taskTagDto);
